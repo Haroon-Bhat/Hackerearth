@@ -1,0 +1,79 @@
+Combinatorics is all about number of ways of choosing some objects out of a collection and/or number of ways of their arrangement. For example suppose there are five members in a club, let's say there names are A, B, C, D, and E, and one of them is to be chosen as the coordinator. Clearly any one out of them can be chosen so there are 5 ways. Now suppose two members are to be chosen for the position of coordinator and co-coordinator. Now, we can choose A as coordinator and one out of the rest 4 as co-coordinator. Similarly we can choose B as coordinator and one of out the remaining 4 as co-coordinator, and similarly with C, D and E. So there will be total 20 possible ways.
+
+Note that in the previous example choosing A then B and choosing B then A, are considered different, i.e. the way of arrangement matter. Now suppose two coordinators are to be chosen, so here choosing A, then B and choosing B then A will be same. Number of different ways here will be 10.
+
+In the first example we have to find permutation of choosing 2 members out of 5 and in the second one we have to find out combination of choosing 2 members out of 5.
+
+Let's generalize it. Permutations of choosing  disticnt objects out of a collection of  objects can be calculated using the following formula:
+Combinations of choosing  distinct objects out of a collection of  objects can be calculated using the following formula:
+Basic Combinatorics Rules:
+Suppose there are two sets  and .
+
+The basic rules of combinatorics one must remember are:
+
+The Rule of Product:
+The product rule states that if there are  number of ways to choose one element from  and  number of ways to choose one element from , then there will be  number of ways to choose two elements, one from  and one from .
+
+The Rule of Sum:
+The sum rule states that if there are  number of ways to choose one element from  and  number of ways to choose one element from , then there will be  number of ways to choose one element that can belong to either  or to .
+
+These rules can be used for a finite collections of sets.
+
+Permutations with repetition:
+
+If we have  objects out of which  objects are of type ,  objects are of type , ...  objects are of type , then number of ways of arrangement of these  objects are given by:
+
+Combinations with repetition:
+
+If we have  elements out of which we want to choose  elements and it is allowed to choose one element more than once, then number of ways are given by:
+Pascal Triangle:
+The image given below shows a pascal triangle.
+
+enter image description here
+As can be seen in the  row there are  elements, where .  element of  row is equal to  where .
+
+There are several interesting properties in Pascal triangle.
+The corner elements of each row are always equal to 1( and , ). All the other  elements of the triangle, (where  and ) , are equal to the sum of  and  element. So, because of this property, a dynamic programming approach can be used for computing pascal triangle. Following is the pseudo code for that.
+
+
+function pascal_triangle(MAXN)
+    intialize a matrix dp[MAXN][MAXN] with 0
+    for i = 0 to MAXN
+        dp[i][0]=dp[0][i]=1
+    endfor
+    for i = 1 to MAXN
+        for j = 1 to MAXN
+            dp[i][j] = dp[i-1][j]+dp[i][j-1]
+        endfor
+    endfor
+In the code given above  denotes 
+Another interesting property of pascal triangle is, the sum of all the elements in  row is equal to , where .
+
+Hockey Stick Rule:
+Hockey sticky rule is simply the equality given below:
+The following image will make it more clear.
+
+enter image description here
+
+
+Now let's try to solve the problem given below.
+Given  and  find out how many different ways are there to represent  as sum of  non-zero integers.
+Let's take an example. Sum of elements of following sets, which are of size 3, is equal to 5:
+
+
+
+
+
+
+We can rewrite the above sets as follows:
+
+
+
+
+
+
+
+So, clearly there are exactly five , and between those there is either a comma or a plus sign, and also comma appears exactly 2 times.
+
+Clearly there are 4 dashes and we have to choose 2 out of those and place a comma there, and at the rest place plus sign. So, number of way of choosing 2 objects out of 4 is .
+In general, for  there will be  dashes, and out of those we want to choose  and place comma in place of those and in place of rest of the dashes place plus sign. So ways of choosing  objects out of  is 
